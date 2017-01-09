@@ -1,0 +1,17 @@
+{
+  "name": "webpack-angular-submodules-demo",
+  "version": "1.0.0",
+  "description": "Example project showing how to use webpack with Angular projects containing submodules.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "angular": "^1.6.1",
+    "angular-ui-router": "1.0.0-beta.3",
+    "webpack": "^1.14.0"
+  }
+}
