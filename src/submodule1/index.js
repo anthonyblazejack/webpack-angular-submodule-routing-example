@@ -1,13 +1,9 @@
-'use strict';
-
 var angular = require('angular');
 require('angular-ui-router');
-require('./component1');
-require('./component2');
 
-var submodule1 = angular.module('submodule1', ['ui.router']);
+var angularModule = angular.module('submodule1', ['ui.router']);
 
-submodule1.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider) {
+angularModule.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider) {
     var submodule1Component1State = {
         name: 'submodule1component1',
         url: '/submodule1component1',
@@ -20,12 +16,11 @@ submodule1.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', 
         component: 'submodule1component2',
     };
 
-    $stateProvider.state(submodule1component1);
-    $stateProvider.state(submodule1component2);
-
-    $urlRouterProvider.otherwise('/');
-    $locationProvider.html5Mode({
-        enabled: true,
-        requireBase: false
-    });
+    $stateProvider.state(submodule1Component1State);
+    $stateProvider.state(submodule1Component2State);
 }]);
+
+require('./component1')(angularModule);
+require('./component2')(angularModule);
+
+module.exports = angularModule;

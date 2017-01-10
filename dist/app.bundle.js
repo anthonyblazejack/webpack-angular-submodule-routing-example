@@ -4,49 +4,31 @@ webpackJsonp([0],[
 
 	var angular = __webpack_require__(1);
 	__webpack_require__(3);
-	__webpack_require__(7)
-	module.exports = angular.module('app', ['submodule1', 'submodule2']);
+	__webpack_require__(4);
+	__webpack_require__(7);
+
+	var angularModule = angular.module('app', ['ui.router', 'submodule1', 'submodule2']);
+	//var angularModule = angular.module('app', ['ui.router']);
+
+	angularModule.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider) {
+	    var homecomponent = {
+	        name: 'home',
+	        url: '/',
+	        component: 'homecomponent',
+	    };
+
+	    $stateProvider.state(homecomponent);
+	    $urlRouterProvider.otherwise('/');
+	}]);
+
+	__webpack_require__(10)(angularModule);
+
+	module.exports = angularModule;
 
 /***/ },
 /* 1 */,
 /* 2 */,
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var angular = __webpack_require__(1);
-	__webpack_require__(4);
-	__webpack_require__(5);
-	__webpack_require__(6);
-
-	var submodule1 = angular.module('submodule1', ['ui.router']);
-
-	submodule1.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider) {
-	    var submodule1Component1State = {
-	        name: 'submodule1component1',
-	        url: '/submodule1component1',
-	        component: 'submodule1component1',
-	    };
-
-	    var submodule1Component2State = {
-	        name: 'submodule1component2',
-	        url: '/submodule1component2',
-	        component: 'submodule1component2',
-	    };
-
-	    $stateProvider.state(submodule1component1);
-	    $stateProvider.state(submodule1component2);
-
-	    $urlRouterProvider.otherwise('/');
-	    $locationProvider.html5Mode({
-	        enabled: true,
-	        requireBase: false
-	    });
-	}]);
-
-/***/ },
-/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*!
@@ -8395,53 +8377,78 @@ webpackJsonp([0],[
 	//# sourceMappingURL=angular-ui-router.js.map
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	var angular = __webpack_require__(1);
+	__webpack_require__(3);
 
-	__webpack_require__(1);
+	var angularModule = angular.module('submodule1', ['ui.router']);
 
-	var submodule1 = angular.module('submodule1');
+	angularModule.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider) {
+	    var submodule1Component1State = {
+	        name: 'submodule1component1',
+	        url: '/submodule1component1',
+	        component: 'submodule1component1',
+	    };
 
-	submodule1.component('submodule1component1', {
-	    template: '<h1>Submodule 1 Component 1</h1>',
-	    controller: function() {
-	        console.log('Submodule 1 Component 1');
-	    }
-	});
+	    var submodule1Component2State = {
+	        name: 'submodule1component2',
+	        url: '/submodule1component2',
+	        component: 'submodule1component2',
+	    };
+
+	    $stateProvider.state(submodule1Component1State);
+	    $stateProvider.state(submodule1Component2State);
+	}]);
+
+	__webpack_require__(5)(angularModule);
+	__webpack_require__(6)(angularModule);
+
+	module.exports = angularModule;
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	module.exports = function(angularModule) {
+	    angularModule.component('submodule1component1', {
+	        template: '<h1>Submodule 1 Component 1</h1>' +
+	            '<ul>' +
+	            '<li><a ui-sref="home">Home</a></li>' +
+	            '</ul>',
+	        controller: function() {
+	            console.log('Submodule 1 Component 1');
+	        }
+	    });
+	};
 
 /***/ },
 /* 6 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	'use strict';
-
-	__webpack_require__(1);
-
-	var submodule1 = angular.module('submodule1');
-
-	submodule1.component('submodule1component2', {
-	    template: '<h1>Submodule 1 Component 2</h1>',
-	    controller: function() {
-	        console.log('Submodule 1 Component 2');
-	    }
-	});
+	module.exports = function(angularModule) {
+	    angularModule.component('submodule1component2', {
+	        template: '<h1>Submodule 1 Component 2</h1>' +
+	            '<ul>' +
+	            '<li><a ui-sref="home">Home</a></li>' +
+	            '</ul>',
+	        controller: function() {
+	            console.log('Submodule 1 Component 2');
+	        }
+	    });
+	};
 
 /***/ },
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
 	var angular = __webpack_require__(1);
-	__webpack_require__(4);
-	__webpack_require__(8);
-	__webpack_require__(9);
+	__webpack_require__(3);
 
-	var submodule2 = angular.module('submodule2', ['ui.router']);
+	var angularModule = angular.module('submodule2', ['ui.router']);
 
-	submodule2.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider) {
+	angularModule.config(['$locationProvider', '$stateProvider', '$urlRouterProvider', function($locationProvider, $stateProvider, $urlRouterProvider) {
 	    var submodule2Component1State = {
 	        name: 'submodule2component1',
 	        url: '/submodule2component1',
@@ -8454,49 +8461,65 @@ webpackJsonp([0],[
 	        component: 'submodule2component2',
 	    };
 
-	    $stateProvider.state(submodule2component1);
-	    $stateProvider.state(submodule2component2);
-
-	    $urlRouterProvider.otherwise('/');
-	    $locationProvider.html5Mode({
-	        enabled: true,
-	        requireBase: false
-	    });
+	    $stateProvider.state(submodule2Component1State);
+	    $stateProvider.state(submodule2Component2State);
 	}]);
+
+	__webpack_require__(8)(angularModule);
+	__webpack_require__(9)(angularModule);
+
+	module.exports = angularModule;
 
 /***/ },
 /* 8 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	'use strict';
-
-	__webpack_require__(1);
-
-	var submodule2 = angular.module('submodule2');
-
-	submodule2.component('submodule2component1', {
-	    template: '<h1>Submodule 2 Component 1</h1>',
-	    controller: function() {
-	        console.log('Submodule 2 Component 1');
-	    }
-	});
+	module.exports = function(angularModule) {
+	    angularModule.component('submodule2component1', {
+	        template: '<h1>Submodule 2 Component 1</h1>' +
+	            '<ul>' +
+	            '<li><a ui-sref="home">Home</a></li>' +
+	            '</ul>',
+	        controller: function() {
+	            console.log('Submodule 2 Component 1');
+	        }
+	    });
+	};
 
 /***/ },
 /* 9 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	'use strict';
+	module.exports = function(angularModule) {
+	    angularModule.component('submodule2component2', {
+	        template: '<h1>Submodule 2 Component 2</h1>' +
+	            '<ul>' +
+	            '<li><a ui-sref="home">Home</a></li>' +
+	            '</ul>',
+	        controller: function() {
+	            console.log('Submodule 2 Component 2');
+	        }
+	    });
+	};
 
-	__webpack_require__(1);
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
 
-	var submodule2 = angular.module('submodule2');
-
-	submodule2.component('submodule2component2', {
-	    template: '<h1>Submodule 2 Component 2</h1>',
-	    controller: function() {
-	        console.log('Submodule 2 Component 2');
-	    }
-	});
+	module.exports = function(angularModule) {
+	    angularModule.component('homecomponent', {
+	        template: '<h1>Home Component</h1>' +
+	            '<ul>' +
+	            '<li><a ui-sref="submodule1component1">Submodule 1 Component 1</a></li>' +
+	            '<li><a ui-sref="submodule1component2">Submodule 1 Component 2</a></li>' +
+	            '<li><a ui-sref="submodule2component1">Submodule 2 Component 1</a></li>' +
+	            '<li><a ui-sref="submodule2component2">Submodule 2 Component 2</a></li>' +
+	            '</ul>',
+	        controller: function() {
+	            console.log('Home Component');
+	        }
+	    });
+	};
 
 /***/ }
 ]);
