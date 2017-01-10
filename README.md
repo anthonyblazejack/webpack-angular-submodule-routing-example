@@ -3,6 +3,11 @@
 ## Purpose
 Example of Submodule Routing in Angular with Webpack.
 
+## Install Dependencies
+```
+npm install
+```
+
 ## Build
 ```
 webpack
