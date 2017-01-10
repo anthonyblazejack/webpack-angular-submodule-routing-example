@@ -1,11 +1,11 @@
-# webpack-angular-submodules-sscce
+# webpack-angular-submodule-routing-example
 
 ## Purpose
-
+Example of Submodule Routing in Angular with Webpack.
 
 ## Build
 ```
-npm run bundle
+webpack
 ```
 
 ## Running Locally
@@ -13,4 +13,4 @@ npm run bundle
 webpack-dev-server
 ```
 
-[I'm an inline-style link](https://www.google.com)
+Navigate to [http://localhost:8080/](http://localhost:8080/)
